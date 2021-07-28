@@ -112,11 +112,11 @@ function managePC({ parentDiv, myName }) {
         // eslint-disable-next-line require-atomic-updates
         let trackSynthetic  = await syntheticVideo({ width: 200, height: 200, word: myName });
         console.log('synthetic: ', trackSynthetic)
-        stream = await navigator.mediaDevices.getUserMedia({ video: {
+        let stream = await navigator.mediaDevices.getUserMedia({ video: {
           width: 200,
           height: 200
         } });
-        track = stream.getVideoTracks()[0]
+        track = await stream.getVideoTracks()[0]
         console.log('gUM: ', track)
         playTrack(track);
       }
