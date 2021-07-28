@@ -110,7 +110,8 @@ function managePC({ parentDiv, myName }) {
     try {
       if (!track) {
         // eslint-disable-next-line require-atomic-updates
-        track  = await syntheticVideo({ width: 200, height: 200, word: myName });
+        // track  = await syntheticVideo({ width: 200, height: 200, word: myName });
+        track = await navigator.mediaDevices.getUserMedia({ audio: true, video: true })
         playTrack(track);
       }
       if (!trackSender) {
@@ -207,5 +208,3 @@ export function main(containerDiv) {
     demoButton.btn.remove();
   });
 }
-
-
