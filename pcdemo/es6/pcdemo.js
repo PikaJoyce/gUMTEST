@@ -110,9 +110,11 @@ function managePC({ parentDiv, myName }) {
     try {
       if (!track) {
         // eslint-disable-next-line require-atomic-updates
-        // track  = await syntheticVideo({ width: 200, height: 200, word: myName });
-        track = await navigator.mediaDevices.getUserMedia({ audio: true, video: true })
-        playTrack(track);
+        trackSynthetic  = await syntheticVideo({ width: 200, height: 200, word: myName });
+        console.log('synthetic: ', trackSynthetic)
+        track = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+        console.log('gUM: ', track)
+        playTrack(trackSynthetic);
       }
       if (!trackSender) {
         console.log(`${myName}:add Track`);
