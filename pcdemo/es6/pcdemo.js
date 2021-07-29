@@ -151,9 +151,9 @@ function managePC({ parentDiv, myName }) {
   //   playTrack(track);
   // };
 
-  thisPC.addEventListener('track', () => {
-    console.log(`${myName}:addEventListener 'TRACK'`);
-    // const track = event.track;
+  thisPC.addEventListener('track', (event) => {
+    console.log(`${myName}:addEventListener`, event);
+    const track = event.track;
     playTrack(track);
   })
 
