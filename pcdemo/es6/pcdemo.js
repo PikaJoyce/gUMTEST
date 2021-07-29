@@ -110,14 +110,12 @@ function managePC({ parentDiv, myName }) {
     try {
       if (!track) {
         // eslint-disable-next-line require-atomic-updates
-        let trackSynthetic  = await syntheticVideo({ width: 200, height: 200, word: myName });
-        console.log('synthetic: ', trackSynthetic)
+        // let trackSynthetic  = await syntheticVideo({ width: 200, height: 200, word: myName });
         let stream = await navigator.mediaDevices.getUserMedia({ video: {
           width: 200,
           height: 200
         } });
         track = await stream.getVideoTracks()[0]
-        console.log('gUM: ', track)
         playTrack(track);
       }
       if (!trackSender) {
@@ -147,11 +145,18 @@ function managePC({ parentDiv, myName }) {
     return video;
   }
 
-  thisPC.ontrack = function(event) {
-    console.log(`${myName}:ontrack`, event);
-    const track = event.track;
+  // thisPC.ontrack = function(event) {
+  //   console.log(`${myName}:ontrack`, event);
+  //   const track = event.track;
+  //   playTrack(track);
+  // };
+
+  thisPC.addEventListener('track', () => {
+    console.log(`${myName}:addEventListener 'TRACK'`);
+    // const track = event.track;
     playTrack(track);
-  };
+  })
+
 
   return {
     pc: thisPC,
