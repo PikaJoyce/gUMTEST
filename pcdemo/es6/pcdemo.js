@@ -197,13 +197,13 @@ function managePC({ parentDiv, myName }) {
       thisPC.addEventListener("icegatheringstatechange", (event) => {
         if (thisPC.iceGatheringState === "complete") {
           const senders = thisPC.getSenders();
-          console.log('SENDERS : ', senders);
-          // senders.forEach((sender) => {
-          //   if (sender.track.kind === "video") {
-          //     codecList = sender.getParameters().codecs;
-          //     return;
-          //   }
-          // });
+          senders.forEach((sender) => {
+            console.log('SENDERS : ', sender);
+            if (sender.track.kind === "video") {
+              codecList = sender.getParameters().codecs;
+              return;
+            }
+          });
         }
         console.log(`${myName}: icegatheringstatechange CODEC LIST`, JSON.stringify(codecList));
         codecList = null;
