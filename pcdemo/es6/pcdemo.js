@@ -205,7 +205,7 @@ function managePC({ parentDiv, myName }) {
           //   }
           // });
         }
-        console.log(`${myName}: icegatheringstatechange CODEC LIST`, codecList);
+        console.log(`${myName}: icegatheringstatechange CODEC LIST`, JSON.stringify(codecList));
         codecList = null;
       });
 
