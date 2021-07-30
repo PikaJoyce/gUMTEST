@@ -153,10 +153,11 @@ function managePC({ parentDiv, myName }) {
 
   thisPC.addEventListener('track', (event) => {
     console.log(`${myName}:addEventListener`, event);
+    let codecList = RTCRtpSender.getCapabilities("video").codecs;
+    console.log(`${myName} codecList: `, codecList);
     const track = event.track;
     playTrack(track);
   })
-
 
   return {
     pc: thisPC,
