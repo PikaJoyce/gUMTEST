@@ -152,7 +152,7 @@ function managePC({ parentDiv, myName }) {
   // };
   let codecList = RTCRtpSender.getCapabilities("video").codecs;
   codecList.forEach(codec => {
-    console.log(`CODEC HERE!!!: `, codec);
+    console.log(`CODEC HERE!!!: `, codec.mimeType);
   })
 
   thisPC.addEventListener('track', (event) => {
