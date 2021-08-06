@@ -58,7 +58,9 @@ function managePC({ parentDiv, myName }) {
     console.log(`${myName}:createOffer: `);
     try {
       const offer = await thisPC.createOffer({
-        iceRestart: restartIce.checked
+        iceRestart: restartIce.checked,
+        offerToReceiveVideo: true,
+        offerToReceiveAudio: true
       });
       sdpType.value = offer.type;
       sdpOutput.value = offer.sdp;
