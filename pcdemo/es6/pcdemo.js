@@ -62,6 +62,7 @@ function managePC({ parentDiv, myName }) {
       });
       sdpType.value = offer.type;
       sdpOutput.value = offer.sdp;
+      console.log(`${myName}'s offer: ${offer.sdp}`)
     } catch (e) {
       console.warn(`${myName}:createOffer failed: `, e);
     }
@@ -73,6 +74,7 @@ function managePC({ parentDiv, myName }) {
       const answer = await thisPC.createAnswer();
       sdpType.value = answer.type;
       sdpOutput.value = answer.sdp;
+      console.log(`${myName}'s offer: ${answer.sdp}`)
     } catch (e) {
       console.warn(`${myName}:createAnswer failed: `, e);
     }
@@ -145,21 +147,17 @@ function managePC({ parentDiv, myName }) {
     return video;
   }
 
-  // thisPC.ontrack = function(event) {
-  //   console.log(`${myName}:ontrack`, event);
-  //   const track = event.track;
-  //   playTrack(track);
-  // };
-  let codecList = RTCRtpSender.getCapabilities("video").codecs;
-  codecList.forEach(codec => {
-    console.log(`CODEC HERE!!!: `, codec.mimeType);
-  })
-
-  thisPC.addEventListener('track', (event) => {
-    console.log(`${myName}:addEventListener`, event);
+  thisPC.ontrack = function(event) {
+    console.log(`${myName}:ontrack`, event);
     const track = event.track;
     playTrack(track);
-  })
+  };
+
+  // thisPC.addEventListener('track', (event) => {
+  //   console.log(`${myName}:addEventListener`, event);
+  //   const track = event.track;
+  //   playTrack(track);
+  // })
 
   return {
     pc: thisPC,
